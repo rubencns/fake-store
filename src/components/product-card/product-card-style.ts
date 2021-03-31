@@ -4,7 +4,7 @@ const oneLine: string = `text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;`;
 
-const ProductStyle = styled.div`
+const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 10px #ccc;
@@ -77,4 +77,4 @@ const ProductStyle = styled.div`
   }
 `;
 
-export default ProductStyle;
+export default ProductCardStyle;

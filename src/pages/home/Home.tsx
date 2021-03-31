@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ProductCardGrid from '../../components/product-card-grid/ProductCardGrid';
-import Spinner from '../../components/spinner/Spinner';
+import Loading from '../../components/loading/loading';
+import ProductCardGrid from '../../components/product-card-grid/product-card-grid';
 import { getAllProducts, IProductData } from '../../services/products';
 import HomeStyle from './home-style';
 
@@ -20,14 +20,7 @@ const Home: React.FC = () => {
 
   return (
     <HomeStyle>
-      {loading ? (
-        <div className="home-loading">
-          <Spinner />
-          <span className="home-loading-text">Loading...</span>
-        </div>
-      ) : (
-        <ProductCardGrid products={productList} />
-      )}
+      {loading ? <Loading /> : <ProductCardGrid products={productList} />}
     </HomeStyle>
   );
 };

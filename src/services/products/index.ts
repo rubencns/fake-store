@@ -18,3 +18,12 @@ export const getAllProducts = async () => {
     console.error(err);
   }
 };
+
+export const getSingleProduct = async (id: string) => {
+  try {
+    const { data }: { data: IProductData } = await axios.get(`/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};

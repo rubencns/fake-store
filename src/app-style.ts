@@ -12,6 +12,11 @@ const AppStyle = styled.div`
   h1 {
     font-size: 48px;
   }
+
+  .app-link {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export default AppStyle;

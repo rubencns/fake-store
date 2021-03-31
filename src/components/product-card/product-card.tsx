@@ -3,10 +3,12 @@ import ProductCardStyle from './product-card-style';
 
 interface IProductCard {
   product: IProductData;
+  goToProductPage?: () => void;
 }
 
 const ProductCard: React.FC<IProductCard> = ({
-  product: { id, title, description, category, image, price },
+  product: { title, description, category, image, price },
+  goToProductPage,
 }) => {
   return (
     <ProductCardStyle>
@@ -24,7 +26,7 @@ const ProductCard: React.FC<IProductCard> = ({
           <p>{description}</p>
         </div>
         <div className="product-info-bottom">
-          <button className="product-info-cta" onClick={() => alert(id)}>
+          <button className="product-info-cta" onClick={goToProductPage}>
             See more
           </button>
           <div className="product-info-price">
