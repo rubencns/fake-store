@@ -62,6 +62,11 @@ const Home: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (categorySelected === 'favorites') setProductList(state.favorites);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.favorites]);
+
   return (
     <HomeStyle>
       {loading ? (
