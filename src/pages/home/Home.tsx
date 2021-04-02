@@ -51,6 +51,13 @@ const Home: React.FC = () => {
     setLoading(false);
   };
 
+  const fetchProductsAddedtoCart = () => {
+    setLoading(true);
+    setProductList(state.cart);
+    setCategorySelected('cart');
+    setLoading(false);
+  };
+
   const loadMore = () => {
     setProductsLimit(productsLimit + limitOfProductRetrieved);
     fetchAllProducts();
@@ -64,8 +71,9 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (categorySelected === 'favorites') setProductList(state.favorites);
+    if (categorySelected === 'cart') setProductList(state.cart);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.favorites]);
+  }, [state.favorites, state.cart]);
 
   return (
     <HomeStyle>
@@ -112,9 +120,13 @@ const Home: React.FC = () => {
                 className={`home-categories-item${
                   categorySelected === 'cart' ? ' isSelected' : ''
                 }`}
+                onClick={() => fetchProductsAddedtoCart()}
               >
                 <ShoppingCartIcon className="home-categories-item-icon" />
                 Cart
+                <span className="home-categories-item-counter">
+                  {state.cart.length}
+                </span>
               </button>
             </div>
           </div>

@@ -8,9 +8,11 @@ const ProductCardGridStyle = styled.div`
 
   .product-card-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
     grid-gap: 40px;
     margin-bottom: 40px;
+    width: 100%;
   }
 
   .product-card-grid-bottom {

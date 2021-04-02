@@ -29,18 +29,19 @@ const ProductCardStyle = styled.div`
       top: 12px;
       right: 12px;
       cursor: pointer;
-      height: 24px;
-      width: 24px;
+      min-height: 24px;
+      min-width: 24px;
+      max-height: 24px;
+      max-width: 24px;
       padding: 4px;
       background: #fff;
       border-radius: 5px;
     }
 
-    .product-not-save:hover {
+    .product-not-saved:hover {
       color: maroon;
     }
-
-    .product-save {
+    .product-saved {
       color: maroon;
     }
   }
@@ -82,23 +83,66 @@ const ProductCardStyle = styled.div`
     &-bottom {
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
-    &-cta {
+    &-bottom-left {
+      display: flex;
+    }
+
+    &-see-more {
       width: 90px;
       min-width: 90px;
       padding: 8px 16px;
       border-radius: 5px;
-      border: 1px solid transparent;
-      background: maroon;
-      color: #fff;
+      border: 1px solid maroon;
+      color: maroon;
+      background: none;
       cursor: pointer;
+      margin-right: 8px;
       transition: all 0.2s ease-in-out;
 
       &:hover {
-        color: maroon;
-        background: #fff;
+        color: #fff;
+        background: maroon;
         border: 1px solid maroon;
+      }
+    }
+
+    &-cart {
+      background: none;
+      border: 1px solid maroon;
+      border-radius: 5px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 0.2s ease-in-out;
+
+      &-icon {
+        min-height: 24px;
+        min-width: 24px;
+        max-height: 24px;
+        max-width: 24px;
+        color: maroon;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &.product-added {
+        border-color: maroon;
+        background: maroon;
+
+        .product-info-cart-icon {
+          color: #fff;
+        }
+      }
+
+      &:hover {
+        border-color: maroon;
+        background: maroon;
+
+        .product-info-cart-icon {
+          color: #fff;
+        }
       }
     }
 

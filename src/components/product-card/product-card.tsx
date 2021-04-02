@@ -2,8 +2,13 @@ import { IProductData } from '../../services/products';
 import ProductCardStyle from './product-card-style';
 import { ReactComponent as HeartIcon } from '../../assets/icons/files/heart-regular.svg';
 import { ReactComponent as HeartSolidIcon } from '../../assets/icons/files/heart-solid.svg';
+import { ReactComponent as CartPlusSolidIcon } from '../../assets/icons/files/cart-plus-solid.svg';
+import { ReactComponent as CartSolidIcon } from '../../assets/icons/files/shopping-cart-solid.svg';
+
 import {
+  addToCart,
   addToFavorites,
+  removeFromCart,
   removeFromFavorites,
   useProductContext,
 } from '../../context/product-context';
@@ -23,12 +28,12 @@ const ProductCard: React.FC<IProductCard> = ({ product, goToProductPage }) => {
         <img src={image} alt="Product" />
         {state.favorites.find((fav) => fav.id === product.id) ? (
           <HeartSolidIcon
-            className="product-fav-icon product-save"
+            className="product-fav-icon product-saved"
             onClick={() => dispatch(removeFromFavorites(product.id))}
           />
         ) : (
           <HeartIcon
-            className="product-fav-icon product-not-save"
+            className="product-fav-icon product-not-saved"
             onClick={() => dispatch(addToFavorites(product))}
           />
         )}
@@ -44,11 +49,34 @@ const ProductCard: React.FC<IProductCard> = ({ product, goToProductPage }) => {
           <p>{description}</p>
         </div>
         <div className="product-info-bottom">
-          <button className="product-info-cta" onClick={goToProductPage}>
-            See more
-          </button>
-          <div className="product-info-price">
-            <span>$ {price}</span>
+          <div className="product-info-bottom-left">
+            <button className="product-info-see-more" onClick={goToProductPage}>
+              See more
+            </button>
+            {state.cart.find(({ id }) => id === product.id) ? (
+              <button
+                className="product-info-cart product-added"
+                onClick={() => {
+                  dispatch(removeFromCart(product.id));
+                }}
+              >
+                <CartSolidIcon className="product-info-cart-icon" />
+              </button>
+            ) : (
+              <button
+                className="product-info-cart"
+                onClick={() => {
+                  dispatch(addToCart(product));
+                }}
+              >
+                <CartPlusSolidIcon className="product-info-cart-icon" />
+              </button>
+            )}
+          </div>
+          <div className="product-info-bottom-right">
+            <div className="product-info-price">
+              <span>${price}</span>
+            </div>
           </div>
         </div>
       </div>
