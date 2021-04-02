@@ -8,15 +8,23 @@ import ProductStyle from './product-style';
 const Product: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<IProductData>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
+  const fetchSingleProduct = (id: string) => {
+    setLoading(true);
     getSingleProduct(id)
       .then((res) => {
         setLoading(false);
         setProduct(res);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        setLoading(false);
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchSingleProduct(id);
   }, [id]);
 
   return (

@@ -17,10 +17,31 @@ const ProductCardStyle = styled.div`
     height: 250px;
     padding: 16px;
     overflow: hidden;
+    position: relative;
 
     img {
       height: 100%;
       object-fit: cover;
+    }
+
+    .product-fav-icon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      cursor: pointer;
+      height: 24px;
+      width: 24px;
+      padding: 4px;
+      background: #fff;
+      border-radius: 5px;
+    }
+
+    .product-not-save:hover {
+      color: maroon;
+    }
+
+    .product-save {
+      color: maroon;
     }
   }
 
@@ -34,9 +55,21 @@ const ProductCardStyle = styled.div`
       ${oneLine}
     }
 
+    &-title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    &-category {
+      margin-bottom: 12px;
+    }
+
     &-description {
+      font-size: 14px;
+      line-height: 20px;
       height: 80px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
 
       p {
         display: -webkit-box;
