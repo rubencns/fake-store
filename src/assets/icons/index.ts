@@ -5,6 +5,7 @@ interface IIcons {
   tagsSolidIcon: string;
   cartPlusSolidIcon: string;
   chevronLeftSolidIcon: string;
+  timesCircleRegularIcon: string;
 }
 
 export const icons: IIcons = {
@@ -14,4 +15,5 @@ export const icons: IIcons = {
   tagsSolidIcon: require('./files/tags-solid.svg'),
   cartPlusSolidIcon: require('./files/cart-plus-solid.svg'),
   chevronLeftSolidIcon: require('./files/chevron-left-solid.svg'),
+  timesCircleRegularIcon: require('./files/times-circle-regular.svg'),
 };

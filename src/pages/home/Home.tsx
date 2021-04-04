@@ -9,8 +9,6 @@ import {
   IProductData,
 } from '../../services/products';
 import HomeStyle from './home-style';
-import { ReactComponent as HeartIcon } from '../../assets/icons/files/heart-regular.svg';
-import { ReactComponent as ShoppingCartIcon } from '../../assets/icons/files/shopping-cart-solid.svg';
 import { useProductContext } from '../../context/product-context';
 
 const Home: React.FC = () => {
@@ -41,20 +39,6 @@ const Home: React.FC = () => {
     const data = await getProductsByCategory(category);
     if (data) setProductList(data);
     setCategorySelected(category);
-    setLoading(false);
-  };
-
-  const fetchProductsByFavorites = () => {
-    setLoading(true);
-    setProductList(state.favorites);
-    setCategorySelected('favorites');
-    setLoading(false);
-  };
-
-  const fetchProductsAddedtoCart = () => {
-    setLoading(true);
-    setProductList(state.cart);
-    setCategorySelected('cart');
     setLoading(false);
   };
 
@@ -102,32 +86,6 @@ const Home: React.FC = () => {
                   {category}
                 </button>
               ))}
-            </div>
-            <div className="home-categories-user">
-              <button
-                className={`home-categories-item${
-                  categorySelected === 'favorites' ? ' isSelected' : ''
-                }`}
-                onClick={() => fetchProductsByFavorites()}
-              >
-                <HeartIcon className="home-categories-item-icon" />
-                Favorites
-                <span className="home-categories-item-counter">
-                  {state.favorites.length}
-                </span>
-              </button>
-              <button
-                className={`home-categories-item${
-                  categorySelected === 'cart' ? ' isSelected' : ''
-                }`}
-                onClick={() => fetchProductsAddedtoCart()}
-              >
-                <ShoppingCartIcon className="home-categories-item-icon" />
-                Cart
-                <span className="home-categories-item-counter">
-                  {state.cart.length}
-                </span>
-              </button>
             </div>
           </div>
           <ProductCardGrid products={productList} loadMore={loadMore} />

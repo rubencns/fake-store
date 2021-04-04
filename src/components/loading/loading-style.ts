@@ -8,7 +8,9 @@ const LoadingStyle = styled.div`
   align-items: center;
 
   .loading-text {
-    margin-top: 8px;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
   }
 `;
 

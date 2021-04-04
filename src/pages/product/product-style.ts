@@ -97,10 +97,10 @@ const ProductStyle = styled.div`
         place-items: center;
 
         &-icon {
-          min-height: 28px;
-          min-width: 28px;
-          max-height: 28px;
-          max-width: 28px;
+          min-height: 32px;
+          min-width: 32px;
+          max-height: 32px;
+          max-width: 32px;
           padding: 4px;
           transition: all 0.2s ease-in-out;
         }
@@ -126,10 +126,10 @@ const ProductStyle = styled.div`
         transition: all 0.2s ease-in-out;
 
         &-icon {
-          min-height: 28px;
-          min-width: 28px;
-          max-height: 28px;
-          max-width: 28px;
+          min-height: 32px;
+          min-width: 32px;
+          max-height: 32px;
+          max-width: 32px;
           padding: 4px;
           color: maroon;
           transition: all 0.2s ease-in-out;

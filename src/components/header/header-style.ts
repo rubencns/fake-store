@@ -2,7 +2,10 @@ import styled from 'styled-components';
 
 const HeaderStyle = styled.div`
   min-height: 80px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .header-logo {
     font-size: 32px;
@@ -17,6 +20,56 @@ const HeaderStyle = styled.div`
       max-width: 32px;
       margin-right: 8px;
       line-height: 0;
+    }
+  }
+
+  .header-sections {
+    display: flex;
+  }
+
+  .header-sections-item {
+    font-size: 16px;
+    background: none;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 14px 16px;
+    margin-right: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    white-space: nowrap;
+
+    &:hover {
+      border: 1px solid maroon;
+      color: maroon;
+    }
+
+    &.isSelected {
+      background: maroon;
+      color: #fff;
+      border-color: maroon;
+    }
+
+    &__icon {
+      height: 16px;
+      width: 16px;
+      margin-right: 8px;
+    }
+
+    &__counter {
+      font-size: 18px;
+      margin-left: 8px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-sections-item__text {
+      display: none;
+    }
+
+    .header-sections-item__icon {
+      margin-right: 0;
     }
   }
 `;
