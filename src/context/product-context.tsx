@@ -36,6 +36,7 @@ const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+const RESET_CART = 'RESET_CART';
 
 // ACTION CREATORS
 const addToFavorites = (product: IProductData) => ({
@@ -53,6 +54,10 @@ const addToCart = (product: IProductData) => ({
 const removeFromCart = (id: number) => ({
   type: REMOVE_FROM_CART,
   payload: { id },
+});
+const resetCart = () => ({
+  type: RESET_CART,
+  payload: {},
 });
 
 // REDUCER
@@ -92,6 +97,11 @@ const productReducer = (state: State, action: Action) => {
         ...state,
         cart: cart.filter((fav) => fav.id !== payload.id),
       };
+    case RESET_CART:
+      return {
+        ...state,
+        cart: [],
+      };
     default:
       return state;
   }
@@ -112,5 +122,6 @@ export {
   removeFromFavorites,
   addToCart,
   removeFromCart,
+  resetCart,
 };
 export default ProductContextProvider;

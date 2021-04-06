@@ -1,18 +1,26 @@
 import styled from 'styled-components';
 
 const CartStyle = styled.div`
-  .cart-title {
+  .cart-heading {
     display: flex;
     align-items: center;
-    margin-bottom: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+
+    .cart-heading-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
 
     h1 {
       font-size: 20px;
       line-height: 34px;
+      min-width: 350px;
+      margin-right: 16px;
     }
 
-    .cart-button {
-      margin-left: 16px;
+    .cart-heading-button {
       padding: 10px 16px;
       background: maroon;
       color: #fff;
@@ -22,6 +30,8 @@ const CartStyle = styled.div`
       display: flex;
       align-items: center;
       cursor: pointer;
+      white-space: nowrap;
+      margin-bottom: 8px;
 
       &-icon {
         min-height: 18px;

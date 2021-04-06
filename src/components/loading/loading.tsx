@@ -2,11 +2,15 @@ import React from 'react';
 import Spinner from '../spinner/spinner';
 import LoadingStyle from './loading-style';
 
-const Loading: React.FC = () => {
+interface ILoading {
+  text?: string;
+}
+
+const Loading: React.FC<ILoading> = ({ text = 'Loading...' }) => {
   return (
     <LoadingStyle>
       <Spinner />
-      <span className="loading-text">Loading...</span>
+      <span className="loading-text">{text}</span>
     </LoadingStyle>
   );
 };

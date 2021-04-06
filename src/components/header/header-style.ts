@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const HeaderStyle = styled.div`
-  min-height: 80px;
   margin-bottom: 50px;
   display: flex;
   justify-content: space-between;
@@ -12,6 +11,7 @@ const HeaderStyle = styled.div`
     font-weight: 700;
     cursor: pointer;
     display: flex;
+    align-items: center;
 
     &-icon {
       min-height: 32px;
@@ -40,6 +40,10 @@ const HeaderStyle = styled.div`
     text-transform: capitalize;
     white-space: nowrap;
 
+    &:last-child {
+      margin-right: 0;
+    }
+
     &:hover {
       border: 1px solid maroon;
       color: maroon;
@@ -64,12 +68,43 @@ const HeaderStyle = styled.div`
   }
 
   @media (max-width: 768px) {
+    .header-logo {
+      font-size: 24px;
+    }
+
+    .header-sections-item__counter {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header-sections-item {
+      padding: 12px;
+    }
+
     .header-sections-item__text {
       display: none;
     }
 
+    .header-sections-item__counter {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .header-sections-item {
+      padding: 8px;
+      margin-right: 8px;
+    }
+
     .header-sections-item__icon {
+      height: 12px;
+      width: 12px;
       margin-right: 0;
+    }
+
+    .header-sections-item__counter {
+      font-size: 12px;
     }
   }
 `;

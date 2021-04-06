@@ -8,6 +8,7 @@ import Home from './pages/home/home';
 import Product from './pages/product/product';
 import Favorites from './pages/favorites/favorites';
 import Cart from './pages/cart/cart';
+import Payment from './pages/payment/payment';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <Route path="/products/:id" component={Product} />
             <Route path="/favorites" component={Favorites} />
             <Route path="/cart" component={Cart} />
+            <Route path="/payment" component={Payment} />
             <Route component={NotFound} />
           </Switch>
         </Router>
