@@ -14,14 +14,14 @@ const ProductCardStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
     padding: 16px;
     overflow: hidden;
     position: relative;
 
     img {
-      height: 100%;
-      object-fit: cover;
+      height: 150px;
+      min-height: 150px;
+      object-fit: contain;
     }
 
     .product-fav-icon {

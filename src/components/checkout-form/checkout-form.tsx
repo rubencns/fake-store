@@ -92,11 +92,7 @@ const CheckoutForm: React.FC<ICheckoutForm> = ({ totalPrice }) => {
             <Loading text="Processing payment..." />
           </div>
         )}
-        <button
-          className="checkout-form-button"
-          type="submit"
-          disabled={processing}
-        >
+        <button className="checkout-form-button" disabled={processing}>
           Pay now
         </button>
       </form>

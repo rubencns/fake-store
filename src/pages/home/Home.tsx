@@ -20,7 +20,6 @@ const Home: React.FC = () => {
   );
   const [categorySelected, setCategorySelected] = useState<string>('');
   const { state } = useProductContext();
-
   const fetchAllProducts = async () => {
     setLoading(true);
     const data = await getAllProducts(productsLimit);
