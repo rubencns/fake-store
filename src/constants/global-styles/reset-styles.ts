@@ -130,6 +130,14 @@ const ResetStyles = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: border-box;
   } 
+
+  input,
+  button,
+  select {
+    &:focus {
+      outline: unset;
+    }
+  }
 `;
 
 export default ResetStyles;

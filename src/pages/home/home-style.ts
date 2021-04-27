@@ -3,44 +3,48 @@ import styled from 'styled-components';
 const HomeStyle = styled.div`
   .home-categories {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 4fr 1fr;
     grid-column-gap: 40px;
     margin-bottom: 25px;
   }
 
   .home-categories-product {
     display: flex;
-    overflow: auto;
-    position: relative;
-    mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 1) 90%,
-      rgba(0, 0, 0, 0)
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 1) 10%
     );
+    mask-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 1) 10%
+    );
+
+    -ms-overflow-style: none;
+    /* scrollbar-width: none; */
   }
 
-  .home-categories-item {
-    font-size: 16px;
-    background: none;
-    display: flex;
-    align-items: center;
-    border: 1px solid black;
-    padding: 14px 16px;
-    margin-right: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: capitalize;
-    white-space: nowrap;
+  .home-categories-product::-webkit-scrollbar {
+    display: none;
+  }
 
-    &:hover {
-      border: 1px solid maroon;
-      color: maroon;
-    }
+  .home-categories-filter {
+    justify-self: flex-end;
 
-    &.isSelected {
-      background: maroon;
-      color: #fff;
-      border-color: maroon;
+    select {
+      padding: 14px 16px;
+      border-radius: 5px;
+      border: 1px solid black;
+      font-size: 16px;
+      appearance: none;
+
+      &:hover {
+        border-color: maroon;
+        color: maroon;
+      }
     }
   }
 

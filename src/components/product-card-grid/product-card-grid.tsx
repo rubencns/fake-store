@@ -1,28 +1,37 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { IProductData } from '../../services/products';
 import ProductCard from '../product-card/product-card';
 import ProductCardGridStyle from './product-card-grid-style';
 import { useInView } from 'react-intersection-observer';
 import { ReactComponent as TimesCircleRegularIcon } from '../../assets/icons/files/times-circle-regular.svg';
+import Loading from '../loading/loading';
 
 interface IProductCardGrid {
   products: IProductData[];
   loadMore?: () => void;
+  moreProductsToLoad?: boolean;
 }
 
 const ProductCardGrid: React.FC<IProductCardGrid> = ({
   products,
   loadMore,
+  moreProductsToLoad,
 }) => {
   const history = useHistory();
-  const { ref, inView, entry } = useInView({
+  const { ref, entry } = useInView({
     threshold: 0,
+    rootMargin: '300px',
   });
 
-  if (entry?.isIntersecting) {
-    //loadMore();
-  }
+  useEffect(() => {
+    if (loadMore) {
+      if (entry?.isIntersecting) {
+        loadMore();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entry?.isIntersecting]);
 
   return (
     <ProductCardGridStyle>
@@ -44,11 +53,13 @@ const ProductCardGrid: React.FC<IProductCardGrid> = ({
           </div>
         </div>
       )}
-      {/* <div className="product-card-grid-bottom">
-        <div ref={ref} onClick={loadMore}>
-          Load more
+      {moreProductsToLoad && (
+        <div className="product-card-grid-bottom">
+          <div ref={ref}>
+            <Loading />
+          </div>
         </div>
-      </div> */}
+      )}
     </ProductCardGridStyle>
   );
 };

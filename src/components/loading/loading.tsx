@@ -6,11 +6,11 @@ interface ILoading {
   text?: string;
 }
 
-const Loading: React.FC<ILoading> = ({ text = 'Loading...' }) => {
+const Loading: React.FC<ILoading> = ({ text }) => {
   return (
     <LoadingStyle>
       <Spinner />
-      <span className="loading-text">{text}</span>
+      {text && <span className="loading-text">{text}</span>}
     </LoadingStyle>
   );
 };

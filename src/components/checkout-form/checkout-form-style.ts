@@ -21,6 +21,15 @@ const CheckoutFormStyle = styled.div`
     margin-bottom: 24px;
   }
 
+  .checkout-form-helper {
+    color: #888;
+    margin-bottom: 16px;
+
+    &-text {
+      margin-bottom: 8px;
+    }
+  }
+
   .checkout-form-button {
     width: 100%;
     padding: 12px 16px;

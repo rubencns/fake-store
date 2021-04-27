@@ -92,6 +92,14 @@ const CheckoutForm: React.FC<ICheckoutForm> = ({ totalPrice }) => {
             <Loading text="Processing payment..." />
           </div>
         )}
+        <div className="checkout-form-helper">
+          <p className="checkout-form-helper-text">
+            For testing purposes use this card:
+          </p>
+          <p className="checkout-form-helper-card">
+            4242 4242 4242 4242 - 01/01 - 123
+          </p>
+        </div>
         <button className="checkout-form-button" disabled={processing}>
           Pay now
         </button>

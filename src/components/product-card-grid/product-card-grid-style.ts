@@ -29,6 +29,7 @@ const ProductCardGridStyle = styled.div`
     border-radius: 5px;
     max-width: 700px;
     width: 100%;
+    margin-bottom: 50px;
 
     &-icon {
       min-height: 64px;

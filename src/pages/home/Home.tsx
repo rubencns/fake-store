@@ -10,6 +10,8 @@ import {
 } from '../../services/products';
 import HomeStyle from './home-style';
 import { useProductContext } from '../../context/product-context';
+import Button from '../../components/button/button';
+import { order, sortProductsByPrice } from '../../utils/sort-products';
 
 const Home: React.FC = () => {
   const [productList, setProductList] = useState<IProductData[]>([]);
@@ -18,12 +20,19 @@ const Home: React.FC = () => {
   const [productsLimit, setProductsLimit] = useState<number>(
     limitOfProductRetrieved
   );
+  const [moreProductsToLoad, setMoreProductsToLoad] = useState<boolean>(true);
   const [categorySelected, setCategorySelected] = useState<string>('');
+  const [order, setOrder] = useState<order | ''>('');
   const { state } = useProductContext();
+
   const fetchAllProducts = async () => {
     setLoading(true);
     const data = await getAllProducts(productsLimit);
-    if (data !== undefined) setProductList(data);
+    if (data !== undefined) {
+      if (data.length === productList.length) setMoreProductsToLoad(false);
+      if (order) setProductList([...sortProductsByPrice(data, order)]);
+      else setProductList(data);
+    }
     setCategorySelected('see all');
     setLoading(false);
   };
@@ -36,14 +45,18 @@ const Home: React.FC = () => {
   const fetchProductsByCategory = async (category: string) => {
     setLoading(true);
     const data = await getProductsByCategory(category);
-    if (data) setProductList(data);
+    if (data) {
+      if (data.length === productList.length) setMoreProductsToLoad(false);
+      if (order) setProductList([...sortProductsByPrice(data, order)]);
+    }
     setCategorySelected(category);
     setLoading(false);
   };
 
   const loadMore = () => {
     setProductsLimit(productsLimit + limitOfProductRetrieved);
-    fetchAllProducts();
+    if (categorySelected === 'see all') return fetchAllProducts();
+    fetchProductsByCategory(categorySelected);
   };
 
   useEffect(() => {
@@ -58,38 +71,47 @@ const Home: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.favorites, state.cart]);
 
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected = e.target.selectedOptions[0].value;
+    if (selected === 'asc' || selected === 'desc') {
+      setOrder(selected);
+      setProductList([...sortProductsByPrice(productList, selected)]);
+    }
+  };
+
   return (
     <HomeStyle>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className="home-categories">
-            <div className="home-categories-product">
-              <button
-                className={`home-categories-item${
-                  categorySelected === 'see all' ? ' isSelected' : ''
-                }`}
-                onClick={() => fetchAllProducts()}
-              >
-                All products
-              </button>
-              {categories.map((category, index) => (
-                <button
-                  key={`home-categories-item__${index}`}
-                  className={`home-categories-item${
-                    category === categorySelected ? ' isSelected' : ''
-                  }`}
-                  onClick={() => fetchProductsByCategory(category)}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+      <>
+        <div className="home-categories">
+          <div className="home-categories-product">
+            <Button
+              text="All products"
+              active={categorySelected === 'see all'}
+              onClick={() => fetchAllProducts()}
+            />
+            {categories.map((category, index) => (
+              <Button
+                key={`home-categories-item__${index}`}
+                active={category === categorySelected}
+                onClick={() => fetchProductsByCategory(category)}
+                text={category}
+              />
+            ))}
           </div>
-          <ProductCardGrid products={productList} loadMore={loadMore} />
-        </>
-      )}
+          <div className="home-categories-filter">
+            <select onChange={handleSelect}>
+              <option>Sort By Price</option>
+              <option value="asc">Price (asc)</option>
+              <option value="desc">Price (desc)</option>
+            </select>
+          </div>
+        </div>
+        <ProductCardGrid
+          products={productList}
+          loadMore={loadMore}
+          moreProductsToLoad={moreProductsToLoad}
+        />
+      </>
     </HomeStyle>
   );
 };
