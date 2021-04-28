@@ -4,7 +4,7 @@ const oneLine: string = `text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;`;
 
-const ProductStyle = styled.div`
+const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 10px #ccc;
@@ -14,13 +14,35 @@ const ProductStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
     padding: 16px;
     overflow: hidden;
+    position: relative;
 
     img {
-      height: 100%;
-      object-fit: cover;
+      height: 150px;
+      min-height: 150px;
+      object-fit: contain;
+    }
+
+    .product-fav-icon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      cursor: pointer;
+      min-height: 28px;
+      min-width: 28px;
+      max-height: 28px;
+      max-width: 28px;
+      padding: 4px;
+      background: #fff;
+      border-radius: 5px;
+    }
+
+    .product-not-saved:hover {
+      color: maroon;
+    }
+    .product-saved {
+      color: maroon;
     }
   }
 
@@ -34,9 +56,21 @@ const ProductStyle = styled.div`
       ${oneLine}
     }
 
+    &-title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    &-category {
+      margin-bottom: 12px;
+    }
+
     &-description {
+      font-size: 14px;
+      line-height: 20px;
       height: 80px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
 
       p {
         display: -webkit-box;
@@ -49,23 +83,66 @@ const ProductStyle = styled.div`
     &-bottom {
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
-    &-cta {
+    &-bottom-left {
+      display: flex;
+    }
+
+    &-see-more {
       width: 90px;
       min-width: 90px;
       padding: 8px 16px;
       border-radius: 5px;
-      border: 1px solid transparent;
-      background: maroon;
-      color: #fff;
+      border: 1px solid maroon;
+      color: maroon;
+      background: none;
       cursor: pointer;
+      margin-right: 8px;
       transition: all 0.2s ease-in-out;
 
       &:hover {
-        color: maroon;
-        background: #fff;
+        color: #fff;
+        background: maroon;
         border: 1px solid maroon;
+      }
+    }
+
+    &-cart {
+      background: none;
+      border: 1px solid maroon;
+      border-radius: 5px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 0.2s ease-in-out;
+
+      &-icon {
+        min-height: 24px;
+        min-width: 24px;
+        max-height: 24px;
+        max-width: 24px;
+        color: maroon;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &.product-added {
+        border-color: maroon;
+        background: maroon;
+
+        .product-info-cart-icon {
+          color: #fff;
+        }
+      }
+
+      &:hover {
+        border-color: maroon;
+        background: maroon;
+
+        .product-info-cart-icon {
+          color: #fff;
+        }
       }
     }
 
@@ -77,4 +154,4 @@ const ProductStyle = styled.div`
   }
 `;
 
-export default ProductStyle;
+export default ProductCardStyle;
